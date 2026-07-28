@@ -8,7 +8,7 @@ class Solution {
             while(!st.isEmpty() && heights[st.peek()]>=heights[i]){
                 st.pop();
             }
-            leftsmall[i]=st.isEmpty()?0:st.peek()+1;
+            leftsmall[i]=st.isEmpty()?-1:st.peek();
             st.push(i);
         }
         st.clear();
@@ -16,12 +16,12 @@ class Solution {
             while(!st.isEmpty() && heights[st.peek()]>=heights[i]){
                 st.pop();
             }
-            rightsmall[i]=st.isEmpty()?n-1:st.peek()-1;
+            rightsmall[i]=st.isEmpty()?n:st.peek();
             st.push(i);
         }
         int maxArea=0;
         for(int i=0;i<n;i++){
-            int width=rightsmall[i]-leftsmall[i]+1;
+            int width=rightsmall[i]-leftsmall[i]-1;
             maxArea=Math.max(maxArea,heights[i]*width);
         }
         return maxArea;
