@@ -9,29 +9,22 @@
  */
 
 class Solution {
-    TreeNode ans=null;
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(p.val<q.val){
-            findLCA(root,p,q);
-        }else{
-            findLCA(root,q,p);
+
+        if (p.val > q.val) {
+            TreeNode temp = p;
+            p = q;
+            q = temp;
         }
-        return ans;
-        
-    }
-    private int findLCA(TreeNode root, TreeNode p, TreeNode q){
-        if(root==null){
-            return 0;
+
+        if (root.val < p.val) {
+            return lowestCommonAncestor(root.right, p, q);
         }
-        else if(root.val<p.val){
-            findLCA(root.right,p,q);
+
+        if (root.val > q.val) {
+            return lowestCommonAncestor(root.left, p, q);
         }
-        else if(root.val>q.val){
-            findLCA(root.left,p,q);
-        }
-        else{
-            ans=root;
-        }
-        return root.val;
+
+        return root;
     }
 }
