@@ -23,11 +23,7 @@ class Solution {
         if(root==null){
             return;
         }
-        if(currentSum==0){
-            currentSum+=root.val;
-        }else{
-            currentSum=(currentSum*10)+root.val;
-        }
+        currentSum=(currentSum*10)+root.val;
         if(root.left==null && root.right==null){
             totalSum+=currentSum;
             return;
